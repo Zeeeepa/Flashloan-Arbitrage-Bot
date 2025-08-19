@@ -119,7 +119,7 @@ Here’s how to run my bot:
    - The final profit (`Net profit`) in ETH goes to you, accounting for all costs (flash loan fee, trading fees 0.1%, slippage 0.05%, gas).
    - No need to top up any balance anywhere!!!
 
-![Arbitrage Flow](https://i.ibb.co/hRDczJz6/22.png)
+![Arbitrage Flow](https://s14.gifyu.com/images/bNaR2.png)
 
 ## Good Luck! 🍀
 
