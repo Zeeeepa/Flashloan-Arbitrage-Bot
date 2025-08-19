@@ -3,7 +3,7 @@
 
 Hi! This is my project **FlashLoanArbitrage** — a bot for arbitrage on DeFi with flash loans. Using a smart contract and a local script `goflash.js`, which runs on your computer. Sharing it so you can try it out!
 
-![DeFi Arbitrage](https://i.ibb.co/0R6knXHb/video-2025-08-19-21-03-04.gif)
+![DeFi Arbitrage](https://s14.gifyu.com/images/bNaR3.gif)
 
 ## How It Works 💡
 
